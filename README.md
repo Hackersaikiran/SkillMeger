@@ -2,7 +2,7 @@
 
 > **Connect Talent with Opportunity Through Intelligent Skill-Based Matching**
 
-![SkillMerge Platform](./landing-preview.png)
+![SkillMerge Landing Page](./frontend/assests/Screenshot%202026-02-18%20204205.png)
 
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/Hackersaikiran/SkillMeger)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](#-license)
