@@ -114,8 +114,6 @@ npm run dev
 
 ## 🏗️ Project Structure
 
-## 🏗️ Project Structure
-
 ```
 SkillMerge/
 ├── 📁 backend/                      # Spring Boot REST API (Java)
@@ -205,10 +203,6 @@ SkillMerge/
 **📚 Full API Documentation:** See [SETUP_GUIDE.md](./SETUP_GUIDE.md#-api-endpoints)
 
 ---
-
-## 🤖 AI Matching Algorithm
-
-Our intelligent matching engine evaluates candidates based on:
 
 ## 🤖 AI Matching Algorithm
 
