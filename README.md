@@ -1,321 +1,528 @@
-# SkillMerge
+# 🚀 SkillMerge
 
-🎯 **Skill-based job and project recommendation platform** combining AI matching with modern web technologies.
+> **Connect Talent with Opportunity Through Intelligent Skill-Based Matching**
 
-Built with: **Spring Boot** | **React** | **PostgreSQL** | **FastAPI** | **Docker**
+![SkillMerge Platform](./landing-preview.png)
+
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/Hackersaikiran/SkillMeger)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](#-license)
+[![Stack](https://img.shields.io/badge/stack-Spring%20Boot%20|%20React%20|%20PostgreSQL-blueviolet.svg)](#-technology-stack)
+
+SkillMerge is a modern, full-stack job and talent matching platform powered by AI. It connects candidates with their ideal opportunities, helps recruiters find the perfect talent, and provides admins with comprehensive analytics—all through an intelligent skill-based matching engine.
 
 ---
 
-## 📖 Quick Links
+## 🎯 Table of Contents
 
-- **[Complete Setup Guide](./SETUP_GUIDE.md)** - Detailed instructions for all configurations
-- **[Project Structure](#-project-structure)** - Overview of the codebase
-- **[Features](#-features)** - What you can do here
-- **[API Documentation](#-api-overview)** - Endpoint reference
+- [Features](#-features)
+- [Quick Start](#-quick-start)
+- [Technology Stack](#-technology-stack)
+- [Project Structure](#-project-structure)
+- [API Documentation](#-api-documentation)
+- [Setup Guide](#-setup-guide)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
 
 ---
 
 ## ✨ Features
 
 ### For Candidates
-- 🎯 Get AI-powered job and project recommendations
-- 📝 Apply to opportunities matching your skills
-- 📄 Upload and manage your resume
-- 🔔 Receive real-time notifications
-- 📊 Track all your applications
+- 🎯 **AI-Powered Recommendations** - Get jobs and projects perfectly matched to your skills
+- 📝 **Easy Application** - Apply to opportunities with one click
+- 📄 **Resume Management** - Upload and update your resume anytime
+- 🔔 **Smart Notifications** - Get notified about matching opportunities
+- 📊 **Application Tracking** - Monitor all your applications in real-time
 
 ### For Recruiters
-- 📢 Post jobs and projects
-- 👥 Review applicants and their profiles
-- ✅ Manage application workflow
-- 📈 View recruitment analytics
-- 🎯 Find perfect skill matches
+- 📢 **Post Opportunities** - Create jobs and projects instantly
+- 👥 **Smart Candidate Search** - Find perfect candidates by skills, experience, or availability
+- ✅ **Application Management** - Review, shortlist, and manage applicants efficiently
+- 📈 **Recruitment Analytics** - Track hiring metrics and recruitment performance
+- 🎯 **AI Matching** - Let AI find the most suitable candidates for your roles
 
 ### For Admins
-- 📊 Monitor platform-wide analytics
-- 👤 Manage users and accounts
-- 🔍 View all jobs, projects, applications
-- 📈 Track matching performance
+- 📊 **Platform Analytics** - Monitor key metrics and platform performance
+- 👤 **User Management** - Manage users, roles, and permissions
+- 🔍 **System Overview** - View all jobs, projects, applications, and users
+- 📈 **Insights & Reports** - Track matching performance and platform health
+- ⚙️ **Configuration** - Control platform settings and features
 
 ---
 
-## 🚀 Getting Started (5 Minutes)
+## ⚡ Quick Start
 
 ### Prerequisites
-- PostgreSQL 13+
-- Java 17+
-- Node.js 16+
+Ensure you have these installed:
+- **PostgreSQL** 13+ 
+- **Java** 17+ 
+- **Node.js** 16+
+- **Docker & Docker Compose** (optional but recommended)
 
-### Start the Full Stack
+### 🐳 Quick Start with Docker (Recommended)
 
-```bash
-# 1. Create database
-createdb skillmerge
-
-# 2. Start backend (in backend/ folder)
-mvn spring-boot:run
-
-# 3. Start frontend (in frontend/ folder)
-npm install
-npm run dev
-
-# 4. Open http://localhost:5173
-```
-
-**Test Login Credentials:**
-```
-Email: alex@skillmerge.dev
-Password: password123
-Role: Candidate
-```
-
----
-
-## 🐳 Docker Quick Start
+**Fastest way to get SkillMerge running locally in minutes:**
 
 ```bash
+# Clone the repository
+git clone https://github.com/Hackersaikiran/SkillMeger.git
+cd SkillMerge
+
+# Start all services
 docker-compose up --build
 ```
 
-This starts:
-- ✅ PostgreSQL (port 5432)
-- ✅ Backend API (port 8080)
-- ✅ Frontend (port 5173)
-- ✅ ML Service (port 9000)
+**Then open your browser:**
+- **Frontend:** http://localhost:5173
+- **Backend API:** http://localhost:8080
+- **ML Service:** http://localhost:9000
+
+### 🚀 Manual Setup (Without Docker)
+
+**Terminal 1: Start Backend**
+```bash
+cd backend
+mvn spring-boot:run
+# Backend runs at http://localhost:8080
+```
+
+**Terminal 2: Start ML Service** (optional)
+```bash
+cd ml-service
+pip install -r requirements.txt
+python main.py
+# Service runs at http://localhost:9000
+```
+
+**Terminal 3: Start Frontend**
+```bash
+cd frontend
+npm install
+npm run dev
+# Frontend runs at http://localhost:5173
+```
+
+### 📝 Test Login Credentials
+
+| Role | Email | Password |
+|------|-------|----------|
+| **Candidate** | alex@skillmerge.dev | password123 |
+| **Recruiter** | recruiter@skillmerge.dev | password123 |
+| **Admin** | admin@skillmerge.dev | admin123 |
 
 ---
 
-## 📁 Project Structure
+## 🏗️ Project Structure
+
+## 🏗️ Project Structure
 
 ```
 SkillMerge/
-├── backend/              # Spring Boot REST API
-│   ├── src/main/java/   # Controllers, Services, Entities
-│   ├── pom.xml          # Maven dependencies
-│   └── resources/       # app.yml configuration
-├── frontend/             # React + Vite
-│   ├── src/pages/       # Login, Register, Dashboards
-│   ├── src/components/  # Reusable UI components
-│   ├── src/api/         # API client functions
-│   └── index.html       # Entry point
-├── ml-service/           # FastAPI matching service
-│   ├── main.py          # Skill matching algorithm
-│   └── requirements.txt
-├── database/
-│   └── seed.sql         # Sample data
-├── SETUP_GUIDE.md       # Detailed setup instructions
-└── docker-compose.yml   # Container orchestration
+├── 📁 backend/                      # Spring Boot REST API (Java)
+│   ├── src/main/java/com/skillmerge/
+│   │   ├── controllers/             # REST API endpoints
+│   │   ├── services/                # Business logic
+│   │   ├── entities/                # Database models
+│   │   ├── repositories/            # Data access layer
+│   │   ├── security/                # JWT & authentication
+│   │   ├── dto/                     # Data transfer objects
+│   │   ├── exceptions/              # Custom exceptions
+│   │   └── config/                  # Application configuration
+│   ├── src/main/resources/
+│   │   ├── application.yml          # Main configuration
+│   │   └── application-dev.yml      # Development config
+│   ├── pom.xml                      # Maven dependencies
+│   └── Dockerfile                   # Docker build file
+│
+├── 📁 frontend/                     # React + Vite App
+│   ├── src/
+│   │   ├── pages/                   # Page components
+│   │   │   ├── Landing.jsx          # Landing page
+│   │   │   ├── Login.jsx            # Login page
+│   │   │   ├── Register.jsx         # Registration page
+│   │   │   ├── CandidateDashboard.jsx
+│   │   │   ├── RecruiterDashboard.jsx
+│   │   │   ├── AdminDashboard.jsx
+│   │   │   └── JobSearch.jsx
+│   │   ├── components/              # Reusable components
+│   │   ├── api/                     # API client modules
+│   │   ├── App.jsx                  # Main app component
+│   │   └── main.jsx                 # Entry point
+│   ├── index.html                   # HTML template
+│   ├── package.json                 # Node dependencies
+│   ├── vite.config.js               # Vite build config
+│   ├── tailwind.config.js           # Tailwind CSS config
+│   ├── nginx.conf                   # Nginx configuration
+│   └── Dockerfile                   # Docker build file
+│
+├── 📁 ml-service/                   # FastAPI Python Service
+│   ├── main.py                      # ML matching algorithm
+│   ├── requirements.txt             # Python dependencies
+│   ├── Dockerfile                   # Docker build file
+│   └── Procfile                     # Process configuration
+│
+├── 📁 database/                     # Database setup
+│   └── seed.sql                     # Initial test data
+│
+├── 📄 docker-compose.yml            # Docker Compose orchestration
+├── 📄 SETUP_GUIDE.md                # Detailed setup instructions
+├── 📄 COMPREHENSIVE_FIXES.md        # Major fixes documentation
+└── 📄 README.md                     # This file
+
 ```
+
+---
+
+## 💻 Technology Stack
+
+| Component | Technologies |
+|-----------|--------------|
+| **Frontend** | React 18, Vite, Tailwind CSS, React Router, Axios |
+| **Backend** | Spring Boot 3, Spring Security, JPA/Hibernate, PostgreSQL JDBC |
+| **Database** | PostgreSQL 13+, SQL |
+| **Authentication** | JWT Tokens, Spring Security, Role-based Access (RBAC) |
+| **ML/Matching** | FastAPI (Python), Machine Learning algorithms |
+| **DevOps** | Docker, Docker Compose, Nginx |
+| **Build Tools** | Maven, npm, Vite |
 
 ---
 
 ## 🔌 API Overview
 
-| Resource | Methods | Description |
-|----------|---------|-------------|
-| `/auth` | POST | Register, Login |
-| `/candidates` | GET, PUT | Profile management |
-| `/jobs` | GET, POST, SEARCH | Job postings |
-| `/projects` | GET, POST, SEARCH | Project postings |
-| `/applications` | GET, POST, PATCH | Track applications |
-| `/matching` | POST | AI recommendations |
-| `/admin` | GET | Analytics & management |
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/api/auth/register` | POST | User registration |
+| `/api/auth/login` | POST | User authentication |
+| `/api/candidates` | GET, PUT | Candidate profile management |
+| `/api/recruiters` | GET, PUT | Recruiter profile management |
+| `/api/jobs` | GET, POST | Jobs CRUD operations |
+| `/api/projects` | GET, POST | Projects CRUD operations |
+| `/api/applications` | GET, POST, PATCH | Application tracking |
+| `/api/matching/recommend` | POST | AI-powered recommendations |
+| `/api/admin` | GET | Admin analytics & management |
+| `/api/notifications` | GET | Notification retrieval |
 
-**Full API documentation** in [SETUP_GUIDE.md](./SETUP_GUIDE.md#-api-endpoints)
+**📚 Full API Documentation:** See [SETUP_GUIDE.md](./SETUP_GUIDE.md#-api-endpoints)
 
 ---
 
-## 🛠️ Configuration
+## 🤖 AI Matching Algorithm
 
-### Backend (src/main/resources/application.yml)
+Our intelligent matching engine evaluates candidates based on:
+
+## 🤖 AI Matching Algorithm
+
+Our intelligent matching engine evaluates candidates based on:
+
+- **Skill Matching** (70% weight) - Technical skill overlap between candidate and opportunity
+- **Experience Matching** (30% weight) - Experience level alignment with role requirements
+
+**Example:** A candidate with `React, Python, 5 years` experience gets a high match score for a `React Developer` role requiring `2+ years`.
+
+---
+
+## ⚙️ Configuration
+
+### Backend Configuration
+**File:** `backend/src/main/resources/application.yml`
+
 ```yaml
+server:
+  port: 8080
+
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/skillmerge
     username: postgres
     password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
 
 app:
   jwt:
-    secret: your-secret-key
+    secret: ${JWT_SECRET:your-secret-key}
+    expiration-ms: 86400000
   matching:
-    use-remote: true  # Enable AI service
+    use-remote: true
     service-url: http://localhost:9000/match
+
+cors:
+  allowed-origins: http://localhost:5173
 ```
 
-### Frontend (.env.local)
+### Frontend Configuration
+**File:** `frontend/.env`
+
 ```
 VITE_API_URL=http://localhost:8080/api
 ```
 
----
-
-## 🤖 AI Matching Engine
-
-The platform uses intelligent matching to recommend opportunities:
-
-- **Skill Matching** (70% weight): Overlap between your skills and job requirements
-- **Experience Matching** (30% weight): Your experience level vs. requirement
-
-Example: A candidate with `React, Python, 5 years` gets a high match score for a `React developer` role requiring `2 years`.
-
----
-
-## 📊 Default Test Users
-
-| Role | Email | Password | Purpose |
-|------|-------|----------|---------|
-| Candidate | alex@skillmerge.dev | password123 | Test job search |
-| Recruiter | recruiter@skillmerge.dev | password123 | Post jobs |
-| Admin | admin@skillmerge.dev | admin123 | View analytics |
+### Docker Configuration
+**File:** `docker-compose.yml` - Define services, ports, and environment variables
 
 ---
 
 ## 🧪 Testing the Platform
 
-### Test Scenario 1: Job Application
-1. Log in as candidate (alex@skillmerge.dev)
-2. Browse /search or go to Candidate Dashboard
-3. View recommendations
-4. Click "Apply" on any job
-5. Check your applications in the dashboard
+### Test Scenario 1: Job Search & Application
+1. Go to http://localhost:5173
+2. Click **"Get Started"** or **"Sign In"**
+3. Login as candidate: `alex@skillmerge.dev` / `password123`
+4. Browse job recommendations
+5. Click **Apply** on any job
+6. Check your applications in the dashboard
 
 ### Test Scenario 2: Recruiter Workflow
-1. Log in as recruiter (recruiter@skillmerge.dev)
-2. Post a new job with required skills
-3. See applicants in the recruiter dashboard
-4. Update application status (Shortlist/Offer/Reject)
+1. Login as recruiter: `recruiter@skillmerge.dev` / `password123`
+2. Go to Recruiter Dashboard
+3. Create a new job posting with required skills
+4. View applicants as they apply
+5. Update application status (Shortlist/Offer/Reject)
 
 ### Test Scenario 3: Admin Monitoring
-1. Log in as admin (admin@skillmerge.dev)
+1. Login as admin: `admin@skillmerge.dev` / `admin123`
 2. View platform-wide analytics
-3. See all users, jobs, applications
-4. Monitor matching performance
+3. Monitor user growth and application metrics
+4. See top skills in demand
 
 ---
 
-## 🔍 Troubleshooting
+## 📖 Setup & Documentation
 
-**Backend won't start?**
-```bash
-# Check if port 8080 is in use
-lsof -i :8080
-# Check database connection
-psql -U postgres -d skillmerge
-```
+For more detailed setup instructions and advanced configuration, check out:
 
-**Frontend won't start?**
-```bash
-# Clear node modules and reinstall
-rm -rf node_modules package-lock.json
-npm install
-npm run dev
-```
-
-**Can't log in?**
-```bash
-# Verify database was seeded with test users
-psql -U postgres -d skillmerge -c "SELECT * FROM candidates LIMIT 1;"
-```
-
-**More help?** See [SETUP_GUIDE.md - Troubleshooting](./SETUP_GUIDE.md#-troubleshooting)
-
----
-
-## 🚀 Deployment
-
-### Docker Compose (Recommended)
-```bash
-docker-compose up --build
-```
-
-### Manual Deployment
-1. Set environment variables (JWT_SECRET, DB credentials, etc.)
-2. Build backend: `mvn clean package`
-3. Build frontend: `npm run build`
-4. Deploy to your hosting (AWS, Heroku, DigitalOcean, Azure, etc.)
-
----
-
-## 📚 Technology Stack
-
-| Layer | Technologies |
-|-------|--------------|
-| **Frontend** | React 18, Vite, Tailwind CSS, React Router |
-| **Backend** | Spring Boot 3, Spring Security, JPA/Hibernate |
-| **Database** | PostgreSQL 13+, JDBC |
-| **Matching** | FastAPI, Python ML algorithms |
-| **Auth** | JWT tokens, Spring Security |
-| **Container** | Docker, Docker Compose |
+| Document | Purpose |
+|----------|---------|
+| **[SETUP_GUIDE.md](./SETUP_GUIDE.md)** | Complete step-by-step installation guide |
+| **[COMPREHENSIVE_FIXES.md](./COMPREHENSIVE_FIXES.md)** | Documentation of major fixes and improvements |
+| **GitHub Issues** | Report bugs and feature requests |
 
 ---
 
 ## 📝 Development Workflow
 
+**Option 1: Using Docker (Recommended)**
 ```bash
-# Clone and enter directory
+git clone https://github.com/Hackersaikiran/SkillMeger.git
 cd SkillMerge
+docker-compose up --build
+```
 
-# Terminal 1: Start backend
-cd backend && mvn spring-boot:run
+**Option 2: Manual Setup (Multiple Terminals)**
 
-# Terminal 2: Start ML service (optional)
-cd ml-service && ./bin/uvicorn main:app --reload
+**Terminal 1: Backend**
+```bash
+cd backend
+mvn clean install
+mvn spring-boot:run
+```
 
-# Terminal 3: Start frontend
-cd frontend && npm run dev
+**Terminal 2: ML Service** (optional)
+```bash
+cd ml-service
+pip install -r requirements.txt
+uvicorn main:app --reload --port 9000
+```
+
+**Terminal 3: Frontend**
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+## � Troubleshooting
+
+### Backend Issues
+
+**Problem:** Backend won't start
+```bash
+# Check if port 8080 is already in use
+lsof -i :8080
+# Kill the process using port 8080
+kill -9 <PID>
+```
+
+**Problem:** Database connection error
+```bash
+# Verify PostgreSQL is running
+psql -U postgres -c "SELECT 1;"
+
+# Check SkillMerge database exists
+psql -U postgres -c "\l" | grep skillmerge
+
+# Create database if missing
+createdb skillmerge
+psql -U postgres -d skillmerge < database/seed.sql
+```
+
+### Frontend Issues
+
+**Problem:** Frontend won't load
+```bash
+# Clear node dependencies
+rm -rf frontend/node_modules frontend/package-lock.json
+
+# Reinstall and start
+cd frontend
+npm install
+npm run dev
+```
+
+**Problem:** API calls failing (CORS errors)
+- Ensure backend is running on `http://localhost:8080`
+- Verify `.env` has correct `VITE_API_URL`
+- Check backend CORS configuration in `application.yml`
+
+### Docker Issues
+
+**Problem:** Containers won't start
+```bash
+# View error logs
+docker-compose logs -f
+
+# Rebuild containers
+docker-compose down
+docker-compose up --build
+
+# Remove all containers and images
+docker-compose down -v
+docker system prune -a
+```
+
+**Problem:** Database persistence
+- Verify `pgdata` volume exists: `docker volume ls`
+- Check volume mounts in `docker-compose.yml`
+
+### Authentication Issues
+
+**Problem:** Can't login with test credentials
+```bash
+# Verify test users exist in database
+psql -U postgres -d skillmerge -c "SELECT id, email, role FROM users LIMIT 5;"
+
+# Reseed database with test data
+psql -U postgres -d skillmerge < database/seed.sql
+```
+
+**Problem:** JWT token expired
+- Clear browser cookies and login again
+- Tokens expire after 24 hours (configurable in `application.yml`)
+
+### More Help
+
+📖 **Full Documentation:** [SETUP_GUIDE.md](./SETUP_GUIDE.md)  
+🐛 **Report Bug:** [GitHub Issues](https://github.com/Hackersaikiran/SkillMeger/issues)  
+💬 **Ask Question:** Open a discussion on GitHub
+
+---
+
+## �📚 Useful Commands
+
+```bash
+# Frontend
+npm run dev                 # Start dev server (http://localhost:5173)
+npm run build              # Build for production
+npm run preview            # Preview production build
+
+# Backend
+mvn clean install          # Build with dependencies
+mvn spring-boot:run        # Start Spring Boot
+mvn test                   # Run tests
+mvn clean package          # Create JAR file
+
+# Database
+createdb skillmerge                                    # Create database
+psql -U postgres -d skillmerge < database/seed.sql   # Load sample data
+
+# Docker
+docker-compose up --build                    # Start all services
+docker-compose down                          # Stop all services
+docker-compose logs -f                       # View logs
+docker-compose ps                            # Show running containers
 ```
 
 ---
 
 ## 🤝 Contributing
 
-Want to improve SkillMerge?
+We love contributions! Here's how to help:
 
-1. Create a feature branch: `git checkout -b feature/amazing-feature`
-2. Make changes
-3. Test thoroughly
-4. Submit a pull request
+1. **Fork the Repository**
+   ```bash
+   git clone https://github.com/YOUR-USERNAME/SkillMeger.git
+   ```
+
+2. **Create Feature Branch**
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+
+3. **Make Changes & Test**
+   - Ensure code follows project standards
+   - Test thoroughly on all user roles
+   - Update documentation if needed
+
+4. **Commit & Push**
+   ```bash
+   git add .
+   git commit -m "Add amazing feature"
+   git push origin feature/amazing-feature
+   ```
+
+5. **Open Pull Request**
+   - Describe your changes clearly
+   - Reference any related issues
 
 ---
 
-## 📋 Next Steps
+## 🎯 Roadmap
 
-- [ ] **Setup**: Follow [SETUP_GUIDE.md](./SETUP_GUIDE.md)
-- [ ] **Explore**: Test all user roles
-- [ ] **Customize**: Update branding, colors, features
-- [ ] **Deploy**: Use Docker Compose or cloud platform
-- [ ] **Extend**: Add new features like email notifications
+- ✅ Core platform (Candidates, Recruiters, Admin)
+- ✅ AI-powered job matching
+- ✅ Landing page
+- 🔄 Email notifications
+- 🔄 Advanced analytics dashboard
+- 🔄 Video interview integration
+- 🔄 Mobile app
 
 ---
 
 ## 📄 License
 
-This project is open source and available under the MIT License.
+This project is open source and available under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🎉 Quick Commands Reference
+## 👥 Author
 
-```bash
-# Development
-npm run dev                 # Start frontend
-mvn spring-boot:run        # Start backend
-uvicorn main:app --reload  # Start ML service
-
-# Production Builds
-npm run build              # Build React app
-mvn clean package          # Build Jar file
-
-# Database
-createdb skillmerge        # Create database
-psql -U postgres -d skillmerge < database/seed.sql  # Load data
-
-# Docker
-docker-compose up --build  # Start all services
-docker-compose down        # Stop all services
-```
+**Hackersaikiran**  
+💻 GitHub: [@Hackersaikiran](https://github.com/Hackersaikiran/)
 
 ---
 
-**🌟 Now you're ready to go!** Start with [SETUP_GUIDE.md](./SETUP_GUIDE.md) for detailed instructions.
+## 🎉 Getting Started
+
+Ready to explore SkillMerge? Here's your journey:
+
+1. **Start here:** [SETUP_GUIDE.md](./SETUP_GUIDE.md)
+2. **Quick test:** Run `docker-compose up --build`
+3. **Open browser:** http://localhost:5173
+4. **Login with test credentials** (see table below)
+5. **Explore features** for your user role
+6. **Customize & Deploy** when ready
+
+| Role | Email | Password | Start at |
+|------|-------|----------|----------|
+| 👥 **Candidate** | alex@skillmerge.dev | password123 | /candidate |
+| 🤝 **Recruiter** | recruiter@skillmerge.dev | password123 | /recruiter |
+| 📊 **Admin** | admin@skillmerge.dev | admin123 | /admin |
+
+---
+
+**🌟 Questions or Issues?** Open an issue on [GitHub Issues](https://github.com/Hackersaikiran/SkillMeger/issues)
+
+**Built with ❤️ by [Hackersaikiran](https://github.com/Hackersaikiran/)**
