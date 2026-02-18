@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:skillmerge;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: false
+    open-in-view: false
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        format_sql: true
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:Y2hhbmdlLXRoaXMtc2VjcmV0LWtleS1mb3ItanV0}
+    expiration-ms: 86400000
+  storage:
+    upload-dir: ${UPLOAD_DIR:uploads}
+    base-url: ${UPLOAD_BASE_URL:http://localhost:8080/uploads}
+  matching:
+    service-url: ${MATCHING_SERVICE_URL:http://localhost:9000/match}
+    use-remote: ${MATCHING_USE_REMOTE:false}
+
+cors:
+  allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:5174}
+
+logging:
+  level:
+    root: INFO
+    com.skillmerge: DEBUG

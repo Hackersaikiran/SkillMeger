@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #fff7ed, #f8f4ef 55%, #fef3c7 100%);
+}
+
+.site-header {
+  @apply sticky top-0 z-30 bg-white/70 backdrop-blur border-b border-white/40;
+}
+
+.brand {
+  @apply text-2xl font-semibold tracking-tight text-ink;
+}
+
+.nav-pill {
+  @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-transparent text-slate bg-white/60 hover:bg-white/90 transition;
+}
+
+.nav-pill--active {
+  @apply border-accent bg-sand text-ink;
+}
+
+.nav-pill--primary {
+  @apply bg-accent text-white hover:bg-accent;
+}
+
+.nav-pill--ghost {
+  @apply bg-transparent border border-white/60 text-slate hover:bg-white;
+}
+
+.card {
+  @apply bg-white/70 backdrop-blur rounded-2xl border border-white/40 shadow-lg;
+}
+input[type=\"text\"],
+input[type=\"email\"],
+input[type=\"password\"],
+input[type=\"number\"],
+select,
+textarea {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all;
+}
+
+textarea {
+  @apply resize-none;
+}
+
+button:not(:disabled) {
+  @apply cursor-pointer transition-all duration-200;
+}
+
+button:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+.btn-primary {
+  @apply px-4 py-2 bg-ink text-white rounded-lg hover:bg-slate font-medium transition-colors;
+}
+
+.btn-primary:disabled {
+  @apply opacity-50 hover:bg-ink;
+}
+
+.error-text {
+  @apply text-red-600 text-sm mt-1 block;
+}
+
+.success-text {
+  @apply text-green-600 text-sm mt-1 block;
+}

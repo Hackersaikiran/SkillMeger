@@ -1,0 +1,46 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: skillmerge
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  ml-service:
+    build: ./ml-service
+    ports:
+      - "9000:9000"
+
+  backend:
+    build: ./backend
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/skillmerge
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      MATCHING_USE_REMOTE: "true"
+      MATCHING_SERVICE_URL: http://ml-service:9000/match
+      JWT_SECRET: dGhpcy1pcy1hLXZlcnktc2VjdXJlLWFuZC1sb25nLWp3dC1zZWNyZXQta2V5LWZvci1za2lsbG1lcmdlLWFwcGxpY2F0aW9uLTIwMjY=
+      UPLOAD_BASE_URL: http://localhost:8080/uploads
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - ml-service
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:8080/api
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
